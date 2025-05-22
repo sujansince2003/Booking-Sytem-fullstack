@@ -1,11 +1,29 @@
-import express, { Router, Request, Response } from "express";
+import { Router, Request, Response } from "express";
 import User from "../models/user.model";
-
+import { z } from "zod"
 import jwt from "jsonwebtoken";
-
 const router = Router();
 
+// defining zod validation schema for register body
+const registerSchema = z.object({
+    firstName: z.string(),
+    lastName: z.string(),
+    email: z.string().email("invalid email format"),
+    password: z.string().min(6, "password length should be atleast 6")
+})
+
+
 router.post("/register", async (req: Request, res: Response) => {
+    // validating the request body
+    const Registervalidation = registerSchema.safeParse(req.body);
+
+
+    // handling the request validation fails
+    if (!Registervalidation.success) {
+        res.json({ msg: Registervalidation.error })
+        return;
+    }
+
     const { email, password, firstName, lastName } = req.body;
     try {
         // Validate request body
