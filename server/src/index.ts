@@ -3,6 +3,7 @@ import cors from "cors"
 import "dotenv/config"
 import mongoose from "mongoose"
 import userRoutes from "./routes/users.routes"
+import LoginRoutes from "./routes/auth.routes"
 const app = express()
 
 
@@ -16,10 +17,11 @@ mongoose.connect(process.env.MONGODB_URI as string).then(() => {
 
 
 app.get("/", (req: Request, res: Response) => {
-    res.json({ msg: "hello" })
+    res.json({ msg: "hello" });
 })
 
-app.use("/api/user", userRoutes)
+app.use("/api/user", userRoutes);
+app.use("/api/auth", LoginRoutes);
 
 app.listen(8000, () => {
     console.log("BACKEND SERVER::running in port  8000. visit: http://localhost:8000")
