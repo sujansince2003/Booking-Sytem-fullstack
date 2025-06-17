@@ -4,6 +4,8 @@ import User from "../models/user.model";
 const router = Router();
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
+import verifyToken from "../middleware/auth.middleware";
+
 
 const loginSchema = z.object({
     email: z.string().email("invalid email format"),
@@ -23,11 +25,6 @@ router.post("/login", async (req: Request, res: Response) => {
     const { email, password } = loginValidation.data;
 
     try {
-
-
-
-
-
         const isUserExist = await User.findOne({
             email: email
         })
@@ -68,19 +65,11 @@ router.post("/login", async (req: Request, res: Response) => {
         return;
     }
 
-
-
-
-
-
-
-
-
-
-
 })
 
-
-
+router.get("/validate-token", verifyToken, async (req: Request, res: Response) => {
+    res.status(200).send({ userId: req.userId })
+    return;
+})
 
 export default router;
