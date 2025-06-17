@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import * as apiClient from "../apiClient/register-api-client";
 import { useAppContext } from "../contexts/AppContext";
+import { useNavigate } from "react-router-dom";
 
 export type RegisterFormData = {
   email: string;
@@ -12,6 +13,7 @@ export type RegisterFormData = {
 };
 
 const Register = () => {
+  const navigate = useNavigate();
   const { showToast } = useAppContext();
   const {
     register,
@@ -25,10 +27,11 @@ const Register = () => {
     onSuccess: () => {
       console.log("registered");
       showToast({ toastmsg: "Registered Successfully", type: "SUCCESS" });
+      navigate("/");
     },
     onError: (error: Error) => {
       console.log(error.message);
-      showToast({ toastmsg: "Something went wrong", type: "ERROR" });
+      showToast({ toastmsg: error.message, type: "ERROR" });
     },
   });
 
