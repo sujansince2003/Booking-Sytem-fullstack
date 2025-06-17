@@ -2,13 +2,14 @@
 
 import { createContext, useContext } from "react";
 
-type toastMsgType = {
+export type toastMsgType = {
   toastmsg: string;
   type: "SUCCESS" | "ERROR";
 };
 
 type AppContextType = {
   showToast: (toastMsg: toastMsgType) => void;
+  isLoggedIn: boolean;
 };
 
 export const AppContext = createContext<AppContextType | null>(null);
