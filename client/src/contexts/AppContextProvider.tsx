@@ -3,7 +3,7 @@ import { AppContext } from "./AppContext";
 import type { toastMsgType } from "./AppContext";
 import Toast from "../components/Toast";
 import { useQuery } from "@tanstack/react-query";
-import { validateTokenAPIClient } from "../apiClient/validateToken-api-client";
+import { validateTokenAPIClient } from "../apiClient";
 
 export const AppContextProvider = ({
   children,
