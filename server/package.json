@@ -5,7 +5,9 @@
   "main": "./src/index.ts",
   "scripts": {
     "start": "ts-node .src/index.ts",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "build": "npm install && npx tsc",
+    "e2e": "cross-env DOTENV_CONFIG_PATH=.env.e2e nodemon"
   },
   "author": "sujan khatri",
   "license": "ISC",
@@ -14,6 +16,7 @@
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
+    "env-cross": "^0.0.1-security",
     "express": "^5.1.0",
     "express-validator": "^7.2.1",
     "jsonwebtoken": "^9.0.2",
@@ -29,6 +32,7 @@
     "@types/jsonwebtoken": "^9.0.9",
     "@types/mongoose": "^5.11.96",
     "@types/node": "^22.15.18",
+    "cross-env": "^7.0.3",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
