@@ -8,7 +8,7 @@ const LogOutBtn = () => {
   const mutation = useMutation({
     mutationFn: LogoutAPI,
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["validateToken"] });
+      queryClient.invalidateQueries({ queryKey: ["validateToken"] });
       showToast({ toastmsg: "Logged Out Successfully", type: "SUCCESS" });
     },
     onError: () => {

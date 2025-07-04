@@ -77,7 +77,7 @@ router.post("/logout", (req: Request, res: Response) => {
     res.cookie("auth_token", "", {
         expires: new Date(0)
     })
-    res.status(200).send("");
+    res.status(200).json({ msg: "Logged out successfully" });
     return;
 })
 export default router;
