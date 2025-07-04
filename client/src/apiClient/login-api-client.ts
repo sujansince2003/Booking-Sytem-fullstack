@@ -1,5 +1,5 @@
 import type { LoginFormData } from "../pages/Login";
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ""
 
 export const LoginAPI = async (formData: LoginFormData) => {
 
