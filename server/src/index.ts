@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express"
 import cors from "cors"
+import path from "path"
 import "dotenv/config"
 import mongoose from "mongoose"
 import cookieParser from "cookie-parser"
@@ -19,9 +20,12 @@ mongoose.connect(process.env.MONGODB_URI as string).then(() => {
 })
 
 
-app.get("/", (req: Request, res: Response) => {
-    res.json({ msg: "hello" });
-})
+// run frontend static files in same server (BE and FE)
+
+app.use(express.static(path.join(__dirname, "../../client/dist")))
+
+
+
 
 app.use("/api/user", userRoutes);
 app.use("/api/auth", LoginRoutes);
